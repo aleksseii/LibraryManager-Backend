@@ -7,7 +7,7 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet id="2022-07-19--0002-author" author="aleksseii">
-        <preConditions>
+        <preConditions onFail="MARK_RAN">
             <not>
                 <tableExists tableName="author"/>
             </not>

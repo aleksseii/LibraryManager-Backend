@@ -27,10 +27,9 @@
                     type="VARCHAR(100)">
 
                 <constraints nullable="false"/>
-
             </column>
-        </createTable>
 
+        </createTable>
     </changeSet>
 
 </databaseChangeLog>

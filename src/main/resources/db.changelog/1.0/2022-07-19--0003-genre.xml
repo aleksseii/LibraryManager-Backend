@@ -6,14 +6,14 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <changeSet id="2022-07-19--0001-book" author="aleksseii">
+    <changeSet id="2022-07-19--0003-genre" author="aleksseii">
         <preConditions>
             <not>
-                <tableExists tableName="book"/>
+                <tableExists tableName="genre"/>
             </not>
         </preConditions>
 
-        <createTable tableName="book">
+        <createTable tableName="genre">
             <column name="id"
                     type="NUMERIC(19,0)"
                     autoIncrement="true">
@@ -26,24 +26,6 @@
                     type="VARCHAR(100)">
 
                 <constraints nullable="false"/>
-            </column>
-
-            <column name="author_id"
-                    type="NUMERIC(19,0)">
-
-                <constraints nullable="false"
-                             foreignKeyName="fk_book_author"
-                             references="author(id)"
-                             deleteCascade="true"/>
-            </column>
-
-            <column name="genre_id"
-                    type="NUMERIC(19,0)">
-
-                <constraints nullable="false"
-                             foreignKeyName="fk_book_genre"
-                             references="genre(id)"
-                             deleteCascade="true"/>
             </column>
 
         </createTable>

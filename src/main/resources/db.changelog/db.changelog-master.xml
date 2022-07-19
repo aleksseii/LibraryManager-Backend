@@ -11,4 +11,9 @@
     <include file="db.changelog/1.0/2022-07-19--0001-book.xml"/>
     <include file="db.changelog/1.0/2022-07-19--0004-comment.xml"/>
 
+    <include file="db.changelog/data/2022-07-19--0002-author-data.xml"/>
+    <include file="db.changelog/data/2022-07-19--0003-genre-data.xml"/>
+    <include file="db.changelog/data/2022-07-19--0001-book-data.xml"/>
+    <include file="db.changelog/data/2022-07-19--0004-comment-data.xml"/>
+
 </databaseChangeLog>

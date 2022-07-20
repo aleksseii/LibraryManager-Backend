@@ -12,6 +12,7 @@ import ru.aleksseii.repository.AuthorRepository;
 import ru.aleksseii.repository.BookRepository;
 import ru.aleksseii.repository.CommentRepository;
 import ru.aleksseii.repository.GenreRepository;
+import ru.aleksseii.service.LibraryDemoService;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -23,13 +24,11 @@ public class Application {
 
         ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
 
-        List<Author> authors = context.getBean(AuthorRepository.class).findAll();
-        List<Genre> genres = context.getBean(GenreRepository.class).findAll();
-        List<Book> books = context.getBean(BookRepository.class).findAll();
-        List<Comment> comments = context.getBean(CommentRepository.class).findAll();
+        LibraryDemoService contextBean = context.getBean(LibraryDemoService.class);
 
-        authors.forEach(System.out::println);
-        genres.forEach(System.out::println);
+        contextBean.bookDemo();
+
+
 
         context.close();
 

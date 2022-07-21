@@ -4,18 +4,9 @@ import org.h2.tools.Console;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import ru.aleksseii.domain.Author;
-import ru.aleksseii.domain.Book;
-import ru.aleksseii.domain.Comment;
-import ru.aleksseii.domain.Genre;
-import ru.aleksseii.repository.AuthorRepository;
-import ru.aleksseii.repository.BookRepository;
-import ru.aleksseii.repository.CommentRepository;
-import ru.aleksseii.repository.GenreRepository;
-import ru.aleksseii.service.LibraryDemoService;
+import ru.aleksseii.service.SOutConsole;
 
 import java.sql.SQLException;
-import java.util.List;
 
 @SpringBootApplication
 public class Application {
@@ -24,16 +15,17 @@ public class Application {
 
         ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
 
-        LibraryDemoService contextBean = context.getBean(LibraryDemoService.class);
+
+        SOutConsole contextBean = context.getBean(SOutConsole.class);
 
         contextBean.bookDemo();
 
-        context.close();
+        try {
+            Console.main(args);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
-//        try {
-//            Console.main(args);
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
+//        context.close();
     }
 }

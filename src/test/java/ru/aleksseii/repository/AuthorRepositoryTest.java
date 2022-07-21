@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("class AuthorRepositoryTest")
 @DataJpaTest
 class AuthorRepositoryTest {
 

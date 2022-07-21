@@ -39,6 +39,8 @@ public class LibraryDemoService implements ILibraryDemo {
         authors.forEach(System.out::println);
 
         System.out.println("-----------------------------");
+
+        System.out.println(authorRepository.findByName("First author name"));
     }
 
     @Transactional
@@ -59,6 +61,18 @@ public class LibraryDemoService implements ILibraryDemo {
                 System.out.format("%s, ", comment.getContent());
             }
             System.out.format("%n-------------------------%n");
+        }
+
+        List<Book> booksWithThirdName = bookRepository.findByName("Third book name");
+        for (Book book : booksWithThirdName) {
+            System.out.format("BookId: %d\tBook name: %s\tAuthor data: %s%n\tComments:",
+                    book.getId(), book.getName(), book.getAuthor());
+
+            List<Comment> comments = book.getComments();
+            for (Comment comment : comments) {
+                System.out.format("%s;\t", comment.getContent());
+            }
+            System.out.println();
         }
     }
 

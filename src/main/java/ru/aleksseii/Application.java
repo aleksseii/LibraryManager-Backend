@@ -26,7 +26,7 @@ public class Application {
 
         LibraryDemoService contextBean = context.getBean(LibraryDemoService.class);
 
-        contextBean.commentDemo();
+        contextBean.bookDemo();
 
         context.close();
 

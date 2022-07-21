@@ -8,6 +8,7 @@ import ru.aleksseii.domain.Book;
 import ru.aleksseii.domain.Comment;
 import ru.aleksseii.repository.AuthorRepository;
 import ru.aleksseii.repository.BookRepository;
+import ru.aleksseii.repository.CommentRepository;
 
 import java.util.List;
 
@@ -18,6 +19,8 @@ public class LibraryDemoService implements ILibraryDemo {
     private final AuthorRepository authorRepository;
 
     private final BookRepository bookRepository;
+
+    private final CommentRepository commentRepository;
 
     @Override
     public void authorDemo() {
@@ -57,6 +60,31 @@ public class LibraryDemoService implements ILibraryDemo {
             }
             System.out.format("%n-------------------------%n");
         }
+    }
 
+    @Transactional
+    @Override
+    public void commentDemo() {
+        
+        commentRepository.updateCommentById(1, "new comment 1");
+
+        List<Comment> comments = commentRepository.findAll();
+
+        for (Comment comment : comments) {
+
+            System.out.format("%s:%n%d -- %s%n",
+                    comment.getBook().getName(),
+                    comment.getId(),
+                    comment.getContent());
+        }
+
+        List<Comment> commentsTo2ndBook = commentRepository.findByBookId(2);
+        System.out.println("=======================\nComments to 2nd book:");
+
+        for (Comment comment : commentsTo2ndBook) {
+            System.out.format("%d -- %s%n",
+                    comment.getId(),
+                    comment.getContent());
+        }
     }
 }

@@ -18,7 +18,7 @@ public class Application {
 
         SOutConsole contextBean = context.getBean(SOutConsole.class);
 
-        contextBean.bookDemo();
+        contextBean.commentDemo();
 
         try {
             Console.main(args);

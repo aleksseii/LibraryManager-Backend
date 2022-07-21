@@ -7,9 +7,6 @@ import ru.aleksseii.domain.Author;
 import ru.aleksseii.domain.Book;
 import ru.aleksseii.domain.Comment;
 import ru.aleksseii.domain.Genre;
-import ru.aleksseii.repository.AuthorRepository;
-import ru.aleksseii.repository.BookRepository;
-import ru.aleksseii.repository.CommentRepository;
 
 import java.util.List;
 
@@ -23,7 +20,7 @@ public class SOutConsole implements LibraryDemoService {
 
     private final BookService bookService;
 
-    private final CommentRepository commentRepository;
+    private final CommentService commentService;
 
     @Override
     public void authorDemo() {
@@ -131,9 +128,9 @@ public class SOutConsole implements LibraryDemoService {
     @Override
     public void commentDemo() {
         
-        commentRepository.updateCommentById(1, "new comment 1");
+        commentService.update(1L, "new comment 1");
 
-        List<Comment> comments = commentRepository.findAll();
+        List<Comment> comments = commentService.getAll();
 
         for (Comment comment : comments) {
 
@@ -143,11 +140,30 @@ public class SOutConsole implements LibraryDemoService {
                     comment.getContent());
         }
 
-        List<Comment> commentsTo2ndBook = commentRepository.findByBookId(2);
+        Book book = bookService.getById(2L);
+
+        Comment newComment = Comment.builder()
+                .book(book)
+                .content("this is second book, right?")
+                .build();
+        commentService.insert(newComment);
+
+        List<Comment> commentsTo2ndBook = commentService.getByBookId(2L);
         System.out.println("=======================\nComments to 2nd book:");
 
         for (Comment comment : commentsTo2ndBook) {
             System.out.format("%d -- %s%n",
+                    comment.getId(),
+                    comment.getContent());
+        }
+
+        System.out.println("===========================");
+
+        comments = commentService.getAll();
+        for (Comment comment : comments) {
+
+            System.out.format("%s:%n%d -- %s%n",
+                    comment.getBook().getName(),
                     comment.getId(),
                     comment.getContent());
         }

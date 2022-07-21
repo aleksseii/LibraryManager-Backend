@@ -23,7 +23,7 @@ public class Book {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne(targetEntity = Author.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Author.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id")
     private Author author;
 

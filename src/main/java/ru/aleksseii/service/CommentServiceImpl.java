@@ -2,6 +2,7 @@ package ru.aleksseii.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.aleksseii.domain.Book;
 import ru.aleksseii.domain.Comment;
 import ru.aleksseii.repository.CommentRepository;
 
@@ -31,11 +32,13 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Comment update(long commentId, String content) {
 
-        commentRepository.updateCommentById(commentId, content);
-        return Comment.builder()
+        Book book = commentRepository.getReferenceById(commentId).getBook();
+        Comment newComment = Comment.builder()
                 .id(commentId)
                 .content(content)
+                .book(book)
                 .build();
+        return commentRepository.save(newComment);
     }
 
     @Override

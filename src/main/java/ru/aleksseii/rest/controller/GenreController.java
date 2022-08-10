@@ -46,7 +46,7 @@ public class GenreController {
 
     @PutMapping("/genre/{id}")
     public GenreDTO updateGenre(@PathVariable(name = "id") long genreId,
-                                @RequestParam(name = "newName") String genreName) {
+                                @RequestParam(name = "new_name") String genreName) {
 
         Genre updatedGenre = genreService.update(genreId, genreName);
         return GenreDTO.toDTO(updatedGenre);

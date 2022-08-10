@@ -26,16 +26,12 @@ public class BookServiceImpl implements BookService {
 
         Author author = authorRepository.findByName(authorName);
         if (author == null) {
-            author = Author.builder()
-                    .name(authorName)
-                    .build();
+            author = buildNewAuthor(authorName);
         }
 
         Genre genre = genreRepository.findByName(genreName);
         if (genre == null) {
-            genre = Genre.builder()
-                    .name(genreName)
-                    .build();
+            genre = buildNewGenre(genreName);
         }
 
         Book book = Book.builder()
@@ -66,16 +62,12 @@ public class BookServiceImpl implements BookService {
     public Book update(long id, String bookName, String authorName, String genreName) {
         Author author = authorRepository.findByName(authorName);
         if (author == null) {
-            author = Author.builder()
-                    .name(authorName)
-                    .build();
+            author = buildNewAuthor(authorName);
         }
 
         Genre genre = genreRepository.findByName(genreName);
         if (genre == null) {
-            genre = Genre.builder()
-                    .name(genreName)
-                    .build();
+            genre = buildNewGenre(genreName);
         }
 
         Book book = Book.builder()
@@ -91,5 +83,17 @@ public class BookServiceImpl implements BookService {
     @Override
     public void deleteById(long id) {
         bookRepository.deleteById(id);
+    }
+
+    private static Author buildNewAuthor(String authorName) {
+        return Author.builder().
+                name(authorName)
+                .build();
+    }
+
+    private static Genre buildNewGenre(String genreName) {
+        return Genre.builder()
+                .name(genreName)
+                .build();
     }
 }

@@ -9,7 +9,7 @@ import ru.aleksseii.domain.Author;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.assertj.core.api.Assertions;
 
 @DisplayName("class AuthorRepositoryTest")
 @DataJpaTest
@@ -43,7 +43,7 @@ class AuthorRepositoryTest {
         authorRepository.save(expectedAuthor);
         Author actualAuthor = authorRepository.getReferenceById(EXISTING_AUTHOR_COUNT + 1);
 
-        assertThat(actualAuthor).isEqualTo(expectedAuthor);
+        Assertions.assertThat(actualAuthor).isEqualTo(expectedAuthor);
     }
 
     @Test
@@ -56,7 +56,7 @@ class AuthorRepositoryTest {
                 .build();
         Author actualAuthor = authorRepository.getReferenceById(EXISTING_ID1);
 
-        assertThat(expectedAuthor).isEqualTo(actualAuthor);
+        Assertions.assertThat(expectedAuthor).isEqualTo(actualAuthor);
     }
 
 
@@ -70,7 +70,7 @@ class AuthorRepositoryTest {
         entityManager.flush();
         int afterSize = authorRepository.findAll().size();
 
-        assertThat(beforeSize).isEqualTo(afterSize + 1);
+        Assertions.assertThat(beforeSize).isEqualTo(afterSize + 1);
     }
 
     @Test
@@ -84,7 +84,7 @@ class AuthorRepositoryTest {
 
         Author actualAuthor = authorRepository.findByName(EXISTING_NAME1);
 
-        assertThat(expectedAuthor).isEqualTo(actualAuthor);
+        Assertions.assertThat(expectedAuthor).isEqualTo(actualAuthor);
     }
 
     @Test
@@ -98,7 +98,7 @@ class AuthorRepositoryTest {
         authorRepository.save(expectedAuthor);
         Author actualAuthor = authorRepository.getReferenceById(EXISTING_ID1);
 
-        assertThat(expectedAuthor).isEqualTo(actualAuthor);
+        Assertions.assertThat(expectedAuthor).isEqualTo(actualAuthor);
     }
 
     @Test
@@ -118,8 +118,8 @@ class AuthorRepositoryTest {
                 .name(EXISTING_NAME3)
                 .build();
 
-        assertThat(authorRepository.findAll().size()).isEqualTo(EXISTING_AUTHOR_COUNT);
-        assertThat(authorRepository.findAll())
+        Assertions.assertThat(authorRepository.findAll().size()).isEqualTo(EXISTING_AUTHOR_COUNT);
+        Assertions.assertThat(authorRepository.findAll())
                 .containsExactlyInAnyOrder(expectedAuthor1, expectedAuthor2, expectedAuthor3);
     }
 }

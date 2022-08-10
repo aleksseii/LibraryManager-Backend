@@ -15,16 +15,11 @@ public class Application {
 
         ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
 
-
-        SOutConsole contextBean = context.getBean(SOutConsole.class);
-
-        contextBean.commentDemo();
-
-        try {
-            Console.main(args);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            Console.main(args);
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
 
 //        context.close();
     }

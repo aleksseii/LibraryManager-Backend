@@ -23,36 +23,36 @@ public class GenreController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping(value = "/genre", params = "name")
+    @GetMapping(value = "/genre", params = { "name" })
     public GenreDTO getGenreByName(@RequestParam(name = "name") String genreName) {
 
         Genre genre = genreService.getByName(genreName);
         return GenreDTO.toDTO(genre);
     }
 
-    @GetMapping("/genre/{id}")
+    @GetMapping(value = "/genre/{id}")
     public GenreDTO getGenreById(@PathVariable(name = "id") long genreId) {
 
         Genre genre = genreService.getById(genreId);
         return GenreDTO.toDTO(genre);
     }
 
-    @PostMapping("/genre")
+    @PostMapping(value = "/genre")
     public GenreDTO insertGenre(@RequestBody GenreDTO genreDTO) {
 
         Genre insertedGenre = genreService.insert(GenreDTO.toDomainObject(genreDTO));
         return GenreDTO.toDTO(insertedGenre);
     }
 
-    @PutMapping("/genre/{id}")
+    @PutMapping(value = "/genre/{id}", params = { "name" })
     public GenreDTO updateGenre(@PathVariable(name = "id") long genreId,
-                                @RequestParam(name = "new_name") String genreName) {
+                                @RequestParam(name = "name") String genreName) {
 
         Genre updatedGenre = genreService.update(genreId, genreName);
         return GenreDTO.toDTO(updatedGenre);
     }
 
-    @DeleteMapping("genre/{id}")
+    @DeleteMapping(value = "genre/{id}")
     public void deleteGenre(@PathVariable(name = "id") long genreId) {
 
         genreService.deleteById(genreId);

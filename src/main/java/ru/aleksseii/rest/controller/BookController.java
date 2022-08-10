@@ -23,7 +23,7 @@ public class BookController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping(value = "/book", params = {"name"})
+    @GetMapping(value = "/book", params = { "name" })
     public List<BookDTO> getBooksByName(@RequestParam(name = "name") String bookName) {
 
         return bookService.getByName(bookName).stream()
@@ -31,14 +31,14 @@ public class BookController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/book/{id}")
+    @GetMapping(value = "/book/{id}")
     public BookDTO getBookById(@PathVariable(name = "id") long bookId) {
 
         Book book = bookService.getById(bookId);
         return BookDTO.toDTO(book);
     }
 
-    @PostMapping("/book")
+    @PostMapping(value = "/book", params = { "book", "author", "genre" })
     public BookDTO insertBook(@RequestParam(name = "book") String bookName,
                               @RequestParam(name = "author") String authorName,
                               @RequestParam(name = "genre") String genreName) {
@@ -47,7 +47,7 @@ public class BookController {
         return BookDTO.toDTO(insertedBook);
     }
 
-    @PutMapping("/book/{id}")
+    @PutMapping(value = "/book/{id}", params = { "book", "author", "genre" })
     public BookDTO updateBook(@PathVariable(name = "id") long bookId,
                               @RequestParam(name = "book") String bookName,
                               @RequestParam(name = "author") String authorName,
@@ -57,7 +57,7 @@ public class BookController {
         return BookDTO.toDTO(updatedBook);
     }
 
-    @DeleteMapping("/book/{id}")
+    @DeleteMapping(value = "/book/{id}")
     public void deleteBook(@PathVariable(name = "id") long bookId) {
 
         bookService.deleteById(bookId);

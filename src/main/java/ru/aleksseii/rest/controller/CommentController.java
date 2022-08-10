@@ -27,7 +27,7 @@ public class CommentController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping(value = "/comment", params = "book_id")
+    @GetMapping(value = "/comment", params = { "book_id" })
     public List<CommentDTO> getCommentsByBookId(@RequestParam(name = "book_id") long bookId) {
 
         return commentService.getByBookId(bookId).stream()
@@ -49,7 +49,7 @@ public class CommentController {
         return CommentDTO.toDTO(insertedComment);
     }
 
-    @PutMapping("/comment/{id}")
+    @PutMapping(value = "/comment/{id}", params = { "content" })
     public CommentDTO updateComment(@PathVariable(name = "id") long commentId,
                                     @RequestParam(name = "content") String newContent) {
 
@@ -57,7 +57,7 @@ public class CommentController {
         return CommentDTO.toDTO(updatedComment);
     }
 
-    @DeleteMapping("/comment/{id}")
+    @DeleteMapping(value = "/comment/{id}")
     public void deleteComment(@PathVariable(name = "id") long commentId) {
 
         commentService.deleteById(commentId);

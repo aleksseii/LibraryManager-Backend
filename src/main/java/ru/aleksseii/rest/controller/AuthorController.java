@@ -15,7 +15,7 @@ public class AuthorController {
 
     private final AuthorService authorService;
 
-    @GetMapping("/author")
+    @GetMapping(value = "/author")
     public List<AuthorDTO> getAllAuthors() {
 
         return authorService.getAll().stream()
@@ -23,21 +23,21 @@ public class AuthorController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/author/{id}")
+    @GetMapping(value = "/author/{id}")
     public AuthorDTO getAuthorById(@PathVariable(name = "id") long authorId) {
 
         Author author = authorService.getById(authorId);
         return AuthorDTO.toDTO(author);
     }
 
-    @PostMapping("/author")
+    @PostMapping(value = "/author")
     public AuthorDTO insertAuthor(@RequestBody AuthorDTO authorDTO) {
 
         Author insertedAuthor = authorService.insert(AuthorDTO.toDomainObject(authorDTO));
         return AuthorDTO.toDTO(insertedAuthor);
     }
 
-    @PutMapping("/author/{id}")
+    @PutMapping(value = "/author/{id}", params = { "name" })
     public AuthorDTO updateAuthor(@PathVariable(name = "id") long authorId,
                                   @RequestParam(name = "name") String authorName) {
 
@@ -45,7 +45,7 @@ public class AuthorController {
         return AuthorDTO.toDTO(updatedAuthor);
     }
 
-    @DeleteMapping("/author/{id}")
+    @DeleteMapping(value = "/author/{id}")
     public void deleteAuthor(@PathVariable(name = "id") long authorId) {
 
         authorService.deleteById(authorId);

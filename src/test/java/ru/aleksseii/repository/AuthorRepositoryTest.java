@@ -32,76 +32,6 @@ class AuthorRepositoryTest {
     private EntityManager entityManager;
 
     @Test
-    @DisplayName("Should insert author")
-    void shouldInsertAuthor() {
-
-        Author expectedAuthor = Author.builder()
-                .id(EXISTING_AUTHOR_COUNT + 1)
-                .name("Ivan")
-                .build();
-
-        authorRepository.save(expectedAuthor);
-        Author actualAuthor = authorRepository.getReferenceById(EXISTING_AUTHOR_COUNT + 1);
-
-        Assertions.assertThat(actualAuthor).isEqualTo(expectedAuthor);
-    }
-
-    @Test
-    @DisplayName("Should get author by id")
-    void shouldGetAuthorById() {
-
-        Author expectedAuthor = Author.builder()
-                .id(EXISTING_ID1)
-                .name(EXISTING_NAME1)
-                .build();
-        Author actualAuthor = authorRepository.getReferenceById(EXISTING_ID1);
-
-        Assertions.assertThat(expectedAuthor).isEqualTo(actualAuthor);
-    }
-
-
-    @Test
-    @DisplayName("Should delete author by id")
-    void shouldDeleteAuthorById() {
-
-        int beforeSize = authorRepository.findAll().size();
-        authorRepository.deleteById(EXISTING_ID2);
-
-        entityManager.flush();
-        int afterSize = authorRepository.findAll().size();
-
-        Assertions.assertThat(beforeSize).isEqualTo(afterSize + 1);
-    }
-
-    @Test
-    @DisplayName("Should find author by name")
-    void shouldFindAuthorByName() {
-
-        Author expectedAuthor = Author.builder()
-                .id(EXISTING_ID1)
-                .name("First author name")
-                .build();
-
-        Author actualAuthor = authorRepository.findByName(EXISTING_NAME1);
-
-        Assertions.assertThat(expectedAuthor).isEqualTo(actualAuthor);
-    }
-
-    @Test
-    @DisplayName("Should update author")
-    void shouldUpdateAuthor() {
-
-        Author expectedAuthor = Author.builder()
-                .id(EXISTING_ID1)
-                .name("Ivan")
-                .build();
-        authorRepository.save(expectedAuthor);
-        Author actualAuthor = authorRepository.getReferenceById(EXISTING_ID1);
-
-        Assertions.assertThat(expectedAuthor).isEqualTo(actualAuthor);
-    }
-
-    @Test
     @DisplayName("Should get all authors")
     void shouldGetAllAuthors() {
 
@@ -121,5 +51,74 @@ class AuthorRepositoryTest {
         Assertions.assertThat(authorRepository.findAll().size()).isEqualTo(EXISTING_AUTHOR_COUNT);
         Assertions.assertThat(authorRepository.findAll())
                 .containsExactlyInAnyOrder(expectedAuthor1, expectedAuthor2, expectedAuthor3);
+    }
+
+    @Test
+    @DisplayName("Should get author by id")
+    void shouldGetAuthorById() {
+
+        Author expectedAuthor = Author.builder()
+                .id(EXISTING_ID1)
+                .name(EXISTING_NAME1)
+                .build();
+        Author actualAuthor = authorRepository.getReferenceById(EXISTING_ID1);
+
+        Assertions.assertThat(expectedAuthor).isEqualTo(actualAuthor);
+    }
+
+    @Test
+    @DisplayName("Should find author by name")
+    void shouldFindAuthorByName() {
+
+        Author expectedAuthor = Author.builder()
+                .id(EXISTING_ID1)
+                .name("First author name")
+                .build();
+
+        Author actualAuthor = authorRepository.findByName(EXISTING_NAME1);
+
+        Assertions.assertThat(expectedAuthor).isEqualTo(actualAuthor);
+    }
+
+    @Test
+    @DisplayName("Should insert author")
+    void shouldInsertAuthor() {
+
+        Author expectedAuthor = Author.builder()
+                .id(EXISTING_AUTHOR_COUNT + 1)
+                .name("Ivan")
+                .build();
+
+        authorRepository.save(expectedAuthor);
+        Author actualAuthor = authorRepository.getReferenceById(EXISTING_AUTHOR_COUNT + 1);
+
+        Assertions.assertThat(actualAuthor).isEqualTo(expectedAuthor);
+    }
+
+    @Test
+    @DisplayName("Should update author")
+    void shouldUpdateAuthor() {
+
+        Author expectedAuthor = Author.builder()
+                .id(EXISTING_ID1)
+                .name("Ivan")
+                .build();
+        authorRepository.save(expectedAuthor);
+        Author actualAuthor = authorRepository.getReferenceById(EXISTING_ID1);
+
+        Assertions.assertThat(expectedAuthor).isEqualTo(actualAuthor);
+    }
+
+    @Test
+    @DisplayName("Should delete author by id")
+    void shouldDeleteAuthorById() {
+
+        int beforeSize = authorRepository.findAll().size();
+        authorRepository.deleteById(EXISTING_ID2);
+
+        entityManager.flush();
+        int afterSize = authorRepository.findAll().size();
+
+        Assertions.assertThat(beforeSize).isEqualTo(afterSize + 1);
     }
 }

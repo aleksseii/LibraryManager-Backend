@@ -11,15 +11,15 @@ import javax.persistence.PersistenceContext;
 
 import org.assertj.core.api.Assertions;
 
-@DisplayName("class AuthorRepositoryTest")
+@DisplayName("class AuthorRepository")
 @DataJpaTest
 class AuthorRepositoryTest {
 
-    private static final long EXISTING_AUTHOR_COUNT = 3;
+    private static final long EXISTING_AUTHOR_COUNT = 3L;
 
-    private static final long EXISTING_ID1 = 1;
-    private static final long EXISTING_ID2 = 2;
-    private static final long EXISTING_ID3 = 3;
+    private static final long EXISTING_ID1 = 1L;
+    private static final long EXISTING_ID2 = 2L;
+    private static final long EXISTING_ID3 = 3L;
 
     private static final String EXISTING_NAME1 = "First author name";
     private static final String EXISTING_NAME2 = "Second author name";

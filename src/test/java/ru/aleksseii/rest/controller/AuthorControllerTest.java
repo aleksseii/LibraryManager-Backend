@@ -1,6 +1,5 @@
 package ru.aleksseii.rest.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @DisplayName("class AuthorController")
-@WebMvcTest(AuthorController.class)
+@WebMvcTest(value = AuthorController.class)
 class AuthorControllerTest {
 
     private static final long AUTHOR_ID1 = 1L;

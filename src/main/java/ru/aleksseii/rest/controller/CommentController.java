@@ -27,8 +27,8 @@ public class CommentController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping(value = "/comment", params = { "book_id" })
-    public List<CommentDTO> getCommentsByBookId(@RequestParam(name = "book_id") long bookId) {
+    @GetMapping(value = "/book/{book_id}/comment")
+    public List<CommentDTO> getCommentsByBookId(@PathVariable(name = "book_id") long bookId) {
 
         return commentService.getByBookId(bookId).stream()
                 .map(CommentDTO::toDTO)

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.aleksseii.domain.Book;
 import ru.aleksseii.domain.Comment;
+import ru.aleksseii.repository.BookRepository;
 import ru.aleksseii.repository.CommentRepository;
 
 import java.util.List;
@@ -14,10 +15,7 @@ public class CommentServiceImpl implements CommentService {
 
     private final CommentRepository commentRepository;
 
-    @Override
-    public Comment insert(Comment comment) {
-        return commentRepository.save(comment);
-    }
+    private final BookRepository bookRepository;
 
     @Override
     public List<Comment> getAll() {
@@ -27,6 +25,19 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<Comment> getByBookId(long bookId) {
         return commentRepository.findByBookId(bookId);
+    }
+
+    @Override
+    public Comment insert(long bookId, String commentContent) {
+
+        Book book = bookRepository.getReferenceById(bookId);
+
+        Comment comment = Comment.builder()
+                .content(commentContent)
+                .book(book)
+                .build();
+
+        return commentRepository.save(comment);
     }
 
     @Override

@@ -140,15 +140,12 @@ public class SOutConsole implements LibraryDemoService {
                     comment.getContent());
         }
 
-        Book book = bookService.getById(2L);
+        long bookId = 2L;
+        String commentContent = "this is second book, right?";
 
-        Comment newComment = Comment.builder()
-                .book(book)
-                .content("this is second book, right?")
-                .build();
-        commentService.insert(newComment);
+        commentService.insert(bookId, commentContent);
 
-        List<Comment> commentsTo2ndBook = commentService.getByBookId(2L);
+        List<Comment> commentsTo2ndBook = commentService.getByBookId(bookId);
         System.out.println("=======================\nComments to 2nd book:");
 
         for (Comment comment : commentsTo2ndBook) {

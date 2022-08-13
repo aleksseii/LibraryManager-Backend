@@ -17,8 +17,6 @@ public class CommentController {
 
     private final CommentService commentService;
 
-    private final BookService bookService;
-
     @GetMapping(value = "/comment")
     public List<CommentDTO> getAllComments() {
 
@@ -39,13 +37,7 @@ public class CommentController {
     public CommentDTO insertComment(@RequestParam(name = "book_id") long bookId,
                                     @RequestParam(name = "content") String commentContent) {
 
-        Book book = bookService.getById(bookId);
-        Comment insertedComment = Comment.builder()
-                .content(commentContent)
-                .book(book)
-                .build();
-
-        commentService.insert(insertedComment);
+        Comment insertedComment = commentService.insert(bookId, commentContent);
         return CommentDTO.toDTO(insertedComment);
     }
 

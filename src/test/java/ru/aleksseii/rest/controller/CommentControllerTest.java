@@ -42,7 +42,6 @@ class CommentControllerTest {
     @MockBean
     private CommentService commentService;
 
-    // TODO: find out why any test from this class crashing (probably I should rewrite this whole class)
     @Test
     @DisplayName("Should get all comments")
     void shouldGetAllComments() throws Exception {

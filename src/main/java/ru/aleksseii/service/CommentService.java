@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface CommentService {
 
-    Comment insert(Comment comment);
-
     List<Comment> getAll();
 
     List<Comment> getByBookId(long bookId);
+
+    Comment insert(long bookId, String commentContent);
 
     Comment update(long commentId, String content);
 

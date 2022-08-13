@@ -93,10 +93,10 @@ class AuthorControllerTest {
     void shouldUpdateAuthor() throws Exception {
 
         String randomName = "random name";
-        Author domainAuthor = new Author(AUTHOR_ID2, randomName);
-        AuthorDTO expectedAuthor = AuthorDTO.toDTO(domainAuthor);
+        Author updatedAuthor = new Author(AUTHOR_ID2, randomName);
+        AuthorDTO expectedAuthor = AuthorDTO.toDTO(updatedAuthor);
 
-        BDDMockito.given(authorService.update(AUTHOR_ID2, randomName)).willReturn(domainAuthor);
+        BDDMockito.given(authorService.update(AUTHOR_ID2, randomName)).willReturn(updatedAuthor);
 
         mockMvc.perform(put("/author/{id}", AUTHOR_ID2)
                 .param("name", randomName))
